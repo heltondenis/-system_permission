@@ -1,15 +1,15 @@
 <?php
 session_start();
 require 'config.php';
-require 'class/user.class.php';
+require 'classes/usuarios.class.php';
 
 if(!empty($_POST['email'])) {
 	$email = addslashes($_POST['email']);
-	$password = md5($_POST['password']);
+	$senha = md5($_POST['senha']);
 
-	$users = new Users($pdo);
+	$usuarios = new Usuarios($pdo);
 
-	if($users->doLogin($email, $password)) {
+	if($usuarios->fazerLogin($email, $senha)) {
 		header("Location: index.php");
 		exit;
 	} else {
@@ -25,7 +25,7 @@ if(!empty($_POST['email'])) {
 	<input type="email" name="email" /><br/><br/>
 
 	Senha:<br/>
-	<input type="password" name="password" /><br/><br/>
+	<input type="password" name="senha" /><br/><br/>
 
 	<input type="submit" value="Entrar" />
 </form>
